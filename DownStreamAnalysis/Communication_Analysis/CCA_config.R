@@ -6,8 +6,8 @@ suppressPackageStartupMessages({
 })
 
 # Config
-LONG_CSV <- "../../data/Communication/config/EnrichScoreMatrix_long.csv"
-OUT_DIR  <- "../../data/Communication/config"
+LONG_CSV <- "./data/Communication/config/EnrichScoreMatrix_long.csv"
+OUT_DIR  <- "./data/Communication/config"
 dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)
 
 NBOOT <- 999

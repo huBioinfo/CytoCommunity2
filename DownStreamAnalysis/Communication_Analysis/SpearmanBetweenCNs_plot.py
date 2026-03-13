@@ -18,7 +18,7 @@ import matplotlib.ticker as mtick
 
 SCORES_LONG_CSV = "data/Communication/config/EnrichScoreMatrix_long.csv"
 SPEARMAN_CSV    = "data/Communication/config/Spearman_TopCCA_Pairs.csv"
-OUT_DIR         = "data/Communication/SpearmanBetweenCNs_plot/Sperman_plots"
+OUT_DIR         = "plot/Communication/SpearmanBetweenCNs_plot/Sperman_plots"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 

@@ -9,8 +9,8 @@ suppressPackageStartupMessages({
 font_add("Arial", "C:/Windows/Fonts/arial.ttf")
 showtext_auto()
 
-LOAD_DIR <- "../../data/Communication/config"
-OUT_DIR  <- "../../data/Communication/SpearmanBetweenCNs_plot/CCA_plots"
+LOAD_DIR <- "./data/Communication/config"
+OUT_DIR  <- "./plot/Communication/SpearmanBetweenCNs_plot/CCA_plots"
 dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)
 
 # 只读取 coefficients 输出
@@ -68,7 +68,7 @@ for (f in csvs) {
     sub("\\.csv$", "_scatter.pdf", basename(f))
   )
   ggsave(out_pdf, p, width = 6, height = 6, dpi = 1200, bg = "white")
-  message("✅ [COEFFICIENTS] CN", cnA, " vs CN", cnB, " 已保存：", out_png)
+  message("✅ [COEFFICIENTS] CN", cnA, " vs CN", cnB, " 已保存：", out_pdf)
 }
 
 message("\n✅ 典型系数散点图已全部生成")

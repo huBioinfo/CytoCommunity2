@@ -72,7 +72,7 @@ boxplot(
     y_col="CHAOS",
     title=None,
     fname="CHAOS.pdf",
-    AX_MAX=0.0175
+    AX_MAX=0.02
 )
 
 boxplot(

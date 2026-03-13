@@ -183,13 +183,109 @@ python Step4_Step4_CNVisualization.py
 - Smoothing_range: Spatial range (default=50μm) for boundary refinement.
 - InputFolderName: Path to input dataset folder (default="./Step0_Output/"). !!Change it to the original input directory for multi-condition datasets.
 
-### Demo
 
-Applied to healthy mouse spleen spatial proteomics data, CytoCommunity2 demonstrates performance comparable to CytoCommunity while enabling **automatic TCN alignment** across samples (i.e., colors are matched) with **much lower memory consumption**. Note that most deep learning-based unsupervised methods like CytoCommunity (unsupervised version) process images (samples) individually and thus TCNs are not aligned across samples (i.e., colors are NOT matched), which hinders comparative analysis.
+### Demo for Downstream Analysis
+After obtaining the clustering results in 'Step4_Output', we can proceed with the subsequent downstream analysis. The first step is to calculate the cell-type enrichment scores for each sample
+```batch
+cd CytoCommunity2
+matlab -batch "run('./DownStreamAnalysis/DifferentialComposed_Analysis/Step1_CellTypeEnrichmentMatrix.m')"
+```
+The enrichment score matrix is the foundation for our downstream analysis, and next, we can start with dominant cell type analysis.
+```batch
+python DownStreamAnalysis/DominateCT_Analysis/Heatmap_config.py
+python DownStreamAnalysis/DominateCT_Analysis/plot.py
+```
+<p align="center">
+  <img src="support/heatmap.png" width="700">
+</p>
+Next, we evaluated the reproducibility of the CNs.
 
+```batch
+python DownStreamAnalysis/Recurrency_Analysis/OC_config.py
+python DownStreamAnalysis/Recurrency_Analysis/plot.py
+```
+<p align="center">
+  <img src="support/OC.png" width="700">
+</p>
 
-<div align=center><img src="https://github.com/LiukangWu/CytoCommunity2/blob/main/support/demo.png" width="750" height="650" alt="demo"/></div>  
+We next evaluated the coherence of the CNs.
+```batch
+python DownStreamAnalysis/Coherence_Analysis/Coherence_config.py
+python DownStreamAnalysis/Coherence_Analysis/plot.py
+```
+<div align="center">
+<div style="display:flex; justify-content:center; gap:10px;">
+<div>
+<b>CHAOS score</b><br>
+<img src="support/CHAOS.png" width="300">
+</div>
 
+<div>
+<b>PAS score</b><br>
+<img src="support/PAS.png" width="300">
+</div>
+
+</div>
+
+</div>
+
+We next investigated cell–cell communication both within and between CNs.
+
+```batch
+python DownStreamAnalysis/Communication_Analysis/SpermanWithinCNs_config.py
+python DownStreamAnalysis/Communication_Analysis/SpermanWithinCNs_plot.py
+```
+This is the result of cell–cell communication within CN1.
+<p align="center">
+  <img src="support/spearmanwith.png" width="700">
+</p>
+
+Next, we perform canonical correlation analysis (CCA) between CNs.
+```batch
+Rscript DownStreamAnalysis/Communication_Analysis/CCA_config.R
+Rscript DownStreamAnalysis/Communication_Analysis/CCA_plot.R
+```
+<p align="center">
+  <img src="support/CCA.png" width="700">
+</p>
+
+After obtaining the first canonical correlation pair between CNs, we use it to analyze cell–cell communication between CNs.
+
+```batch
+python DownStreamAnalysis/Communication_Analysis/SpermanBetweenCNs_config.py
+python DownStreamAnalysis/Communication_Analysis/SpermanBetweenCNs_plot.py
+```
+
+This is the result of cell–cell communication between CN6 and CN10.
+<p align="center">
+  <img src="support/spearmanbet.png" width="700">
+</p>
+
+Finally, we perform an analysis and visualization of the DCFs.
+```batch
+python DownStreamAnalysis/DifferentialComposed_Analysis/Step2_test_GraphLabel.py
+Rscript DownStreamAnalysis/DifferentialComposed_Analysis/Step3_t_test.R
+```
+
+Filter cell types with significant p-values (p < 0.05).
+```batch
+python DownStreamAnalysis/DifferentialComposed_Analysis/Step4_filterPvalue.py
+```
+Generate p-value plot per CN
+```batch
+Rscript DownStreamAnalysis/DifferentialComposed_Analysis/Step5_PvaluePlotperCN.R
+```
+<p align="center">
+  <img src="support/CN1.png" width="700">
+</p>
+Generate dot plot
+
+```batch
+python DownStreamAnalysis/DifferentialComposed_Analysis/Pvalue_dotplot.py
+```
+<p align="center">
+  <img src="support/dot.png" width="700">
+</p>
 
 ## Update Log
 

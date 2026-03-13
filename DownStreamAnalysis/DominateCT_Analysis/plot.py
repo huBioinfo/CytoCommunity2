@@ -68,7 +68,7 @@ for spine in ax.spines.values():
     spine.set_visible(False)
 
 # 手动指定 colorbar 位置
-cax = fig.add_axes([1.0, 0.75, 0.02, 0.15])
+cax = fig.add_axes([1.0, 0.6, 0.02, 0.15])
 cbar = fig.colorbar(mesh, cax=cax)
 
 tick_values = [0.0, 0.5, 1.0]

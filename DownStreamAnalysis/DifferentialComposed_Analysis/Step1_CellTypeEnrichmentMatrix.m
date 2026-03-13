@@ -3,11 +3,8 @@ clear
 num_TCN=10;
 
 %Path
-root='E:/Projects-CytoCommunity/MethodsCompare/';
-condition='SKCM/CytoCommunity2/';
-result_folder=[root condition];
-
-image_file=fullfile(result_folder,'SKCM_Input/ImageNameList.txt');
+result_folder='../../';
+image_file=fullfile(result_folder,'TNBC_Input', 'ImageNameList.txt');
 fileID = fopen(image_file);
 image_list=textscan(fileID,'%s','delimiter','\t','Headerlines',0);
 fclose(fileID);
@@ -65,7 +62,7 @@ for image = 1:length(image_list)
     % 加载 .mat 文件
     data = load('CellTypeEnrichment_Res.mat');
     %data.CellTypeByTCN_EnrichScoreMatrix
-    EnrichScoreMatrix='EnrichScoreMatrix/'
+    EnrichScoreMatrix='data/EnrichScoreMatrix/'
     output=[result_folder EnrichScoreMatrix]
     % 创建文件夹
     if ~exist(output, 'dir')

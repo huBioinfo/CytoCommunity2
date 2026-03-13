@@ -12,7 +12,7 @@ def Overlap_Coefficient(set1, set2):
 
 threshold = -math.log10(0.05)
 Input_folder = 'data/EnrichScoreMatrix/'
-Region_filename = "SKCM_Input/ImageNameList.txt"
+Region_filename = "TNBC_Input/ImageNameList.txt"
 Output_path ='data/OverlapCoefficient'
 os.makedirs(Output_path,exist_ok=True)
 Output_path= os.path.join(Output_path,"config.csv")

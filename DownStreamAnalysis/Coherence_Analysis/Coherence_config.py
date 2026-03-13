@@ -77,9 +77,9 @@ for fp in glob.glob(os.path.join(result_table_dir, "*.csv")):
     sample = os.path.basename(fp).replace(".csv", "").replace("ResultTable_", "")
     df = pd.read_csv(fp)
 
-    df = df.loc[~df["TCN_Label"].isna()].copy()
+    df = df.loc[~df["CN_Label"].isna()].copy()
     coords = df[["x_coordinate", "y_coordinate"]].to_numpy(float)
-    adata = ad.AnnData(X=coords, obs=pd.DataFrame({"pred": df["TCN_Label"].astype(str).values}))
+    adata = ad.AnnData(X=coords, obs=pd.DataFrame({"pred": df["CN_Label"].astype(str).values}))
     adata.obsm["spatial"] = coords
 
     chaos = float(compute_CHAOS(adata, "pred"))

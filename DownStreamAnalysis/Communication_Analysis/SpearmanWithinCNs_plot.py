@@ -17,7 +17,7 @@ mpl.rcParams.update({
 
 SCORES_LONG_CSV = "data/Communication/config/EnrichScoreMatrix_long.csv"
 SIG_PAIRS_CSV   = "data/Communication/config/SpearmanWithinCNs.csv"
-OUT_DIR         = "data/Communication/SpearmanWithinCNs_plot"
+OUT_DIR         = "plot/Communication/SpearmanWithinCNs_plot"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 RHO_CUTOFF = 0.4
